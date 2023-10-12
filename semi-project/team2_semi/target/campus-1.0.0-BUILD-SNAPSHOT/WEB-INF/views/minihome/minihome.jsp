@@ -426,15 +426,21 @@
 
                     $('td').each(function() {
                         var dayValue = $(this).text();
+                        var today_day = new Date();
+                        today_day = today_day.getDate();
+                        if(dayValue==today_day){
+                            console.log("도달!");
+                            console.log("dayValue = "+dayValue+"today_day = "+today_day);
+                            $("#today-attend").prop('disabled', true);
+                        }
+
                         if(dayValue<10) dayValue="0"+dayValue;
 
                         if (dayValue == write_date) {
-                            console.log("도달");
                             var memocell =$(this).text()+' '+emojiText;
                             var checkMark = document.createElement("span");
                             checkMark.className="check-mark";
                             checkMark.textContent="✓";
-                            console.log(memocell);
 
                             $(this).text(memocell);
                             $(this).css('background-color', bgColor);

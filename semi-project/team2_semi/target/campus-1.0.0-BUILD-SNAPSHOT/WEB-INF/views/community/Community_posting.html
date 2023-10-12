@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/default.css">
+    <link rel="stylesheet" href="../css/community-nav.css">
+    <link rel="stylesheet" href="../css/community-header.css">
+    <link rel="stylesheet" href="../css/community-ranking-and-postlist.css">
+    <link rel="stylesheet" href="../css/community-posting.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- ck에디터  -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.2/super-build/ckeditor.js"></script>
+
+</head>
+
+<body>
+    <!-- #상단 바 시작 -->
+    <nav>
+        <!-- 로고, 로그인, 회원가입, 마이페이지, 유저아이콘 -->
+        <div class="nav-01">
+            <div class="logo-area">
+                <a href="index.html"><img src="../img/Logo.png" class="logo"></a><!-- 로고 이미지 -->
+            </div>
+            <div class="banner_login">
+                <a href="MiniHome_Home.html"><img src="../img/User.png"
+                        class="user-icon"></a><!-- 여기 링크는 뭐들어가요?? 미니홈피?? -->
+                <a href="Sign_In.html" class="login-button">로그인</a><!-- 이거 # 로그인으로 바꿔야함 -->
+            </div>
+        </div>
+        <!-- 홈, 자유게시판.... 카테고리 + 검색버튼 -->
+        <div class="nav-02">
+            <div class="category">
+                <a href="index.html">홈</a><!-- 홈 -->
+                <a href="Community_Free.html">자유게시판</a><!-- 자유게시판 -->
+                <a href="Community_Auth.html">인증게시판</a><!-- 인증게시판 -->
+                <a href="Community_QNA.html">Q&A게시판</a><!-- Q&A게시판 -->
+                <a href="Community_Map.html">헬스장찾기</a><!-- 헬스장찾기 -->
+            </div>
+            <div class="main-search-box">
+                <input type="search" name="main-search" id="main-search" class="main-search"
+                    placeholder="전체 게시판 검색"><!-- 상단 검색박스 -->
+                <!-- 이건 이쁜거 있으면 그때 수정하는걸로 일단 input:search로 넣어둠 -->
+            </div>
+        </div>
+    </nav>
+    <hr>
+    <!-- #상단 바 끝/ -->
+
+
+
+    <!-- #게시물 선택 바 시작-->
+    <div class="check-post">
+        <a href="javascript:history.back();">전체 게시물</a>&nbsp;&nbsp;&nbsp;
+        <a href="Community_Show_MyPost.html">내 게시물</a>
+        <hr>
+    </div>
+    <!-- #게시물 선택 바 끝/-->
+
+
+
+    <!-- 부위 카테고리2 리스트 시작 -->
+    <div class="second-category2">
+        <select name="2nd-category" id="second-cat2">
+            <!-- 이 부분 디자인은 나중에 바꿔야하나? 싶어요
+            일단 완성해두고 셀렉트 디자인 찾아볼게요. -->
+            <option value="none">부위 카테고리</option>
+            <option value="1">상체</option>
+            <option value="2">하체</option>
+        </select>
+    </div>
+    <!-- 부위 카테고리 리스트 끝 -->
+
+
+
+    <!-- ck에디터 폼 -->
+
+    <div id="ckEditor"></div>
+
+    <script>
+        CKEDITOR.ClassicEditor.create(document.getElementById("ckEditor"), {
+            toolbar: {
+                items: [
+                    'exportPDF', 'exportWord', '|',
+                    'findAndReplace', 'selectAll', '|',
+                    'heading', '|',
+                    'bold', 'italic', 'strikethrough', 'underline', 'code', 'subscript', 'superscript', 'removeFormat', '|',
+                    'bulletedList', 'numberedList', 'todoList', '|',
+                    'outdent', 'indent', '|',
+                    'undo', 'redo',
+                    '-',
+                    'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', 'highlight', '|',
+                    'alignment', '|',
+                    'link', 'insertImage', 'blockQuote', 'insertTable', 'mediaEmbed', 'codeBlock', 'htmlEmbed', '|',
+                    'specialCharacters', 'horizontalLine', 'pageBreak', '|',
+                    'textPartLanguage', '|',
+                    'sourceEditing'
+                ],
+                shouldNotGroupWhenFull: true
+            },
+            list: {
+                properties: {
+                    styles: true,
+                    startIndex: true,
+                    reversed: true
+                }
+            },
+            heading: {
+                options: [
+                    { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                    { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                    { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
+                    { model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' },
+                    { model: 'heading4', view: 'h4', title: 'Heading 4', class: 'ck-heading_heading4' },
+                    { model: 'heading5', view: 'h5', title: 'Heading 5', class: 'ck-heading_heading5' },
+                    { model: 'heading6', view: 'h6', title: 'Heading 6', class: 'ck-heading_heading6' }
+                ]
+            },
+            placeholder: '내용을 입력해주세요.',
+            fontFamily: {
+                options: [
+                    'default',
+                    'Arial, Helvetica, sans-serif',
+                    'Courier New, Courier, monospace',
+                    'Georgia, serif',
+                    'Lucida Sans Unicode, Lucida Grande, sans-serif',
+                    'Tahoma, Geneva, sans-serif',
+                    'Times New Roman, Times, serif',
+                    'Trebuchet MS, Helvetica, sans-serif',
+                    'Verdana, Geneva, sans-serif'
+                ],
+                supportAllValues: true
+            },
+            fontSize: {
+                options: [10, 12, 14, 'default', 18, 20, 22],
+                supportAllValues: true
+            },
+            htmlSupport: {
+                allow: [
+                    {
+                        name: /.*/,
+                        attributes: true,
+                        classes: true,
+                        styles: true
+                    }
+                ]
+            },
+            htmlEmbed: {
+                showPreviews: true
+            },
+            link: {
+                decorators: {
+                    addTargetToExternalLinks: true,
+                    defaultProtocol: 'https://',
+                    toggleDownloadable: {
+                        mode: 'manual',
+                        label: 'Downloadable',
+                        attributes: {
+                            download: 'file'
+                        }
+                    }
+                }
+            },
+            mention: {
+                feeds: [
+                    {
+                        marker: '@',
+                        feed: [
+                            '@apple', '@bears', '@brownie', '@cake', '@cake', '@candy', '@canes', '@chocolate', '@cookie', '@cotton', '@cream',
+                            '@cupcake', '@danish', '@donut', '@dragée', '@fruitcake', '@gingerbread', '@gummi', '@ice', '@jelly-o',
+                            '@liquorice', '@macaroon', '@marzipan', '@oat', '@pie', '@plum', '@pudding', '@sesame', '@snaps', '@soufflé',
+                            '@sugar', '@sweet', '@topping', '@wafer'
+                        ],
+                        minimumCharacters: 1
+                    }
+                ]
+            },
+            removePlugins: [
+                'CKBox',
+                'CKFinder',
+                'EasyImage',
+                'RealTimeCollaborativeComments',
+                'RealTimeCollaborativeTrackChanges',
+                'RealTimeCollaborativeRevisionHistory',
+                'PresenceList',
+                'Comments',
+                'TrackChanges',
+                'TrackChangesData',
+                'RevisionHistory',
+                'Pagination',
+                'WProofreader',
+                'MathType',
+                'SlashCommand',
+                'Template',
+                'DocumentOutline',
+                'FormatPainter',
+                'TableOfContents',
+                'PasteFromOfficeEnhanced'
+            ]
+        }
+        );
+    </script>
+    <!-- ck에디터 폼 끝 -->
+
+
+
+    <div class="write">
+        <button id="writeButton">작성</button>
+    </div>
+
+    <script src="../js/community-default.js"></script>
+    <script src="../js/community-post-paging.js"></script>
+
+
+    <footer class="footer-section">
+        <div class="footer-first-area">
+            <div class="footer-first-first">
+                <div class="footer-title">헬스엔에스</div>
+                <div class="footer-content">사용자들에게 건강한 라이프 스타일을 쉽고 재미있게 유지할 수 있는 플랫폼을 제공합니다.</div>
+                <div class="footer-social-section">
+                    <a href="https://www.facebook.com/" target="_blank" class="footer__social">
+                        <i class="ri-facebook-box-fill"></i>
+                    </a>
+                    <a href="https://twitter.com/" target="_blank" class="footer__social">
+                        <i class="ri-twitter-fill"></i>
+                    </a>
+                    <a href="https://www.instagram.com/" target="_blank" class="footer__social">
+                        <i class="ri-instagram-fill"></i>
+                    </a>
+                    <a href="https://www.youtube.com/" target="_blank" class="footer__social">
+                        <i class="ri-youtube-fill"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-first-second">
+                <div class="footer-title">About</div>
+                <div class="footer-content">
+                    <ul>
+                        <li><a href="index.html">소개</a></li>
+                        <li><a href="Community_Free.html">커뮤니티</a></li>
+                        <li><a href="MiniHome_Home.html">미니 홈</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-first-third">
+                <div class="footer-title">Company</div>
+                <div class="footer-content">
+                    <ul>
+                        <li><a href="https://www.multicampus.com/kr/index.html">멀티캠퍼스</a></li>
+                        <li><a href="https://www.hrd.go.kr/hrdp/ma/pmmao/newIndexRenewal.do">HRD</a></li>
+                        <li><a href="index.html">2조</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-first-4th">
+                <div class="footer-title">Support</div>
+                <div class="footer-content">
+                    <ul>
+                        <li><a href="https://www.naver.com">자주 묻는 질문</a></li>
+                        <li><a href="https://www.daum.net">지원 센터</a></li>
+                        <li><a href="https://www.nate.com">문의하기</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-second-area">
+            <div class="footer-second-left">
+                © 2023 Multi-Campus Semi-Project Team 2. All rigths reserved.
+            </div>
+            <div class="footer-second-right">
+                <div class="footer-TermsNAgreements"><a href="https://youtu.be/9PfIi4nXJ6E?si=VoHRlilst2YOdQiP">Terms &
+                        Agreements</a></div>
+                <div class="footer-PrivacyPolicy"><a href="https://youtu.be/Eb-JAjWSxkI?si=g6xiT8-0tVViOcT2">Privacy
+                        Policy</a></div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

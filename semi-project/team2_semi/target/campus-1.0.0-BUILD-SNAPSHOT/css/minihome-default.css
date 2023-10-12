@@ -2,79 +2,85 @@
 /* 프로필 영역 */
 /* 출석체크 영역에 관한 css */
 p {
-  margin: 0;
+    margin: 0;
 }
 
-
+.minihome-area {
+    background-image: url("../img/minihome-background.png");
+    padding: 25px 22px;
+    width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 60px;
+}
 .home-left {
-  left: 0;
-  width: 270px;
-  height: 680px;
+    left: 0;
+    width: 270px;
+    height: 680px;
 }
 .home-right {
-  right: 0;
-  height: 686px;
-  width: 677px;
-  /* border: 3px solid #bbb; */
+    right: 0;
+    height: 686px;
+    width: 677px;
+    /* border: 3px solid #bbb; */
 }
 .profile-container,
 .count-area-container {
-  margin: 0 auto;
-  width: 198px;
+    margin: 0 auto;
+    width: 198px;
 }
 .profile-area {
-  height: 475px;
-  width: 100%;
-  /* border: 3px solid #bbb; */
+    height: 475px;
+    width: 100%;
+    /* border: 3px solid #bbb; */
 }
 .count-area {
-  margin-top: 15px;
-  height: 190px;
-  width: 100%;
-  /* border: 3px solid #bbb; */
+    margin-top: 15px;
+    height: 190px;
+    width: 100%;
+    /* border: 3px solid #bbb; */
 }
 .profile-pic {
-  margin-top: 25px;
-  text-align: center;
+    margin-top: 25px;
+    text-align: center;
 }
 .profile-pic > img {
-  width: 198px;
-  height: 223px;
+    width: 198px;
+    height: 223px;
 }
 .username-section {
-  margin-top: 9px;
-  font-weight: bold;
+    margin-top: 9px;
+    font-weight: bold;
 }
 .userid-section {
-  font-size: 13px;
+    font-size: 13px;
 }
 #self-comment {
-  margin-top: 10px;
-  width: 198px;
-  height: 83px;
-  resize: none;
-  border: 1px solid var(--blue-basic-color);
+    margin-top: 10px;
+    width: 198px;
+    height: 83px;
+    resize: none;
+    border: 1px solid var(--blue-basic-color);
 }
 .follow-count-section {
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
 .follow-count-section,
 .follower,
 .follow {
-  display: flex;
+    display: flex;
 }
 .edit-profile-section,
 .today-attend-section {
-  margin-top: 5px;
-  text-align: center;
+    margin-top: 5px;
+    text-align: center;
 }
 .edit-profile,
-.today-attend,
-.un-follow-button,
-.follow-button{
-  width: 152px;
-  height: 40px;
+.today-attend {
+    width: 152px;
+    height: 40px;
 }
 .memo,
 .memo-count,
@@ -85,86 +91,83 @@ p {
 .follow,
 .follow-count,
 .reg-date {
-  font-size: 14px;
+    font-size: 14px;
 }
 .today-attend-section {
-  margin-top: 30px;
+    margin-top: 30px;
 }
 
 .memo-today-section {
-  margin-top: 20px;
-  justify-content: space-between;
+    margin-top: 20px;
+    justify-content: space-between;
 }
 .memo-today-section,
 .memo,
 .today,
 .reg-date {
-  display: flex;
+    display: flex;
 }
 
 .check-mine-post {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 .reg-date {
-  margin-top: 15px;
+    margin-top: 15px;
 }
 #self-comment {
-  overflow: auto; /* comment가 넘칠 경우 스크롤바 생성 */
+    overflow: auto; /* comment가 넘칠 경우 스크롤바 생성 */
 }
 
 /* 아래쪽은 ai가 알려준 수정법 */
 
 .username-section {
-  margin-top: 9px;
-  font-weight: bold;
-  border: none; /* 외곽선 제거 */
+    margin-top: 9px;
+    font-weight: bold;
+    border: none; /* 외곽선 제거 */
 }
 
 .userid-section {
-  font-size: 13px;
-  border: none; /* 외곽선 제거 */
+    font-size: 13px;
+    border: none; /* 외곽선 제거 */
 }
 
 .follow-count-section {
-  display: flex;
-  justify-content: space-between;
-  border: none; /* 외곽선 제거 */
+    display: flex;
+    justify-content: space-between;
+    border: none; /* 외곽선 제거 */
 }
 
 #self-comment-editable {
-  height: 100%; /* 부모 높이와 동일하게 설정 */
-  border: none; /* 외곽선 제거 */
+    height: 100%; /* 부모 높이와 동일하게 설정 */
+    border: none; /* 외곽선 제거 */
 }
 
 .edit-profile,
-.today-attend,
-.un-follow-button,
-.follow-button{
-  color: white;
-  background-color: var(--blue-basic-color);
+.today-attend {
+    color: white;
+    background-color: var(--blue-basic-color);
 }
 
 .edit-profile:hover,
-.today-attend:hover,
-.un-follow-button:hover,
-.un-follow-button:hover{
-  background-color: #31386d;
+.today-attend:hover {
+    background-color: #31386d;
 }
 
 .edit-profile:active,
-.today-attend:active,
-.un-follow-button:active,
-.follow-button:active{
-  background-color: var(--blue-basic-color);
+.today-attend:active {
+    background-color: var(--blue-basic-color);
 }
 
 .follow-count-section {
-  margin-top: 10px;
+    margin-top: 10px;
 }
 .check-mine-post {
-  margin-top: 10px;
+    margin-top: 10px;
 }
 #calendar > *,
 .comment-list-section {
-  background-color: #f5f4eb;
+    background-color: #f5f4eb;
+}
+.today-attend:disabled{
+    background-color: #ddd;
 }

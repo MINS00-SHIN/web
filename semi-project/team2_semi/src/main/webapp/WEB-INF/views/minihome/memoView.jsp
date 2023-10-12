@@ -72,6 +72,9 @@
     /**************** ckEditor5 커스터마이징 끝 ****************/
 </style>
 <script>
+    $(document).on('click',"#today-attend", function(){
+        window.location.href = '${pageContext.servletContext.contextPath}/minihome/memo/write';
+    });
     $(document).ready(function () {
         $(".year-month-day").text(${year} +"년 " + ${month} +"월 " + ${day} +"일 출석");
     });
@@ -106,8 +109,14 @@
 
     $(document).on('click', '#follow-button', function () {
         var ownerid = '${uVO.userid}';//값 잘 넘어옴
+        var test = $("#follow-button");
+        if(test.isEmpty){
+            console.log("test");
+        }else{
+            console.log("hi");
+        }
         if (confirm("정말" + ownerid + "님을 팔로우하시겠습니까?")) {
-            if(${LogStatus == "" || LogStatus==null}){
+            if(${LogStatus == "" || LogStatus==null || LogStatus!='Y'}){
                 alert("로그인 후에 진행해주세요. 로그인 화면으로 이동합니다.");
                 window.location.href = "${pageContext.servletContext.contextPath}/";
             }
@@ -179,7 +188,12 @@
             <div class="count-area-container">
                 <div class="today-attend-section" style="height: 40px">
                     <c:if test="${LogId==uVO.userid}">
-                        <input type="button" value="출석체크" class="today-attend" id="today-attend">
+
+                        <input type="button" value="출석체크" class="today-attend" id="today-attend"
+                        <c:if test="${checkDate==0}">
+                                disabled
+                        </c:if>
+                        >
                     </c:if>
 
                 </div>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.team2.healthsns.mapper.CommunityReplyMapper">
+<insert id="replyInsert">
+    insert into replycommunity(no, comment, userid)
+    values(${no}, #{comment}, #{userid})
+</insert>
+
+    <select id="replySelect" resultType="com.team2.healthsns.vo.CommunityReplyVO">
+        select replyno, comment, userid, writedate
+        from replycommunity
+        where no = ${param1}
+        order by replyno desc
+    </select>
+
+    <update id="replyUpdate">
+        update replycommunity
+        set comment=#{comment}
+        where replyno=${replyno}
+    </update>
+    <delete id="replyDelete">
+        delete
+        from replycommunity
+        where replyno=${param1}
+    </delete>
+</mapper>

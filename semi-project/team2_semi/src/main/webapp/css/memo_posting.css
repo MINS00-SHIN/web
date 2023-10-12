@@ -20,9 +20,6 @@ textarea {
   height: 223px;
 }
 
-.checkbox-section {
-  margin-bottom: 20px;
-}
 
 .bodypart-listbox-section {
   height: 200px;
@@ -82,7 +79,7 @@ textarea {
   height: 168px;
 }
 .checkbox-section {
-  margin-top: 30px;
+  margin-top: 15px;
   text-align: center;
 }
 .image-preview-section {

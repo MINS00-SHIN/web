@@ -6,15 +6,11 @@ import com.team2.healthsns.vo.UserVO;
 import com.team2.healthsns.vo.GuestbookVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.StringTokenizer;
+import java.util.*;
 
 @Controller
 public class MinihomeController {
@@ -130,6 +126,26 @@ public class MinihomeController {
     @ResponseBody
     public ModelAndView MemoWrite(HttpSession session) {
         ModelAndView mav = new ModelAndView();
+
+
+        Calendar calendar = Calendar.getInstance();
+        int month = calendar.get(Calendar.MONTH) + 1; // MONTH는 0부터 시작합니다.
+        int year = calendar.get(Calendar.YEAR);
+        int date = calendar.get(Calendar.DATE);
+
+        System.out.println(month+" "+year);
+
+
+        List<MemoVO> memolist = service.MemoListSelect((String) session.getAttribute("LogId"),month,year);
+
+        for(int i = 0; i<memolist.size(); i++){
+            System.out.println(memolist.get(i).getWrite_date());
+            if(date==Integer.parseInt(memolist.get(i).getWrite_date())){
+                mav.setViewName("/minihome/wrong");
+                System.out.println("리턴 직전");
+                return mav;
+            }
+        }
         String id = (String) session.getAttribute("LogId");
         try {
             UserVO uservo = service.UserSelect(id);//owner정보 불러오기
@@ -196,13 +212,30 @@ public class MinihomeController {
     }
 
     @GetMapping("/minihome/memoView")
-    public ModelAndView MemoView(int no) {
+    public ModelAndView MemoView(int no, HttpSession session) {
         ModelAndView mav = new ModelAndView();
         MemoVO mVO = service.MemoSelect(no);
         if(mVO==null){
             mav.setViewName("/minihome/wrong");
             return mav;
         }
+
+        int checkDate = 1;
+        //날짜 체크 시작
+        Calendar calendar = Calendar.getInstance();
+        int month_forcheck = calendar.get(Calendar.MONTH)+1;
+        int year_forcheck = calendar.get(Calendar.YEAR);
+        int date_forcheck = calendar.get(Calendar.DATE);
+        List<MemoVO> memolist = service.MemoListSelect((String) session.getAttribute("LogId"), month_forcheck, year_forcheck);
+        for(int i = 0; i<memolist.size(); i++){
+            if(date_forcheck == Integer.parseInt(memolist.get(i).getWrite_date())){
+                checkDate=0;
+            }
+        }
+
+        //날짜 체크 끝
+
+        mav.addObject("checkDate",checkDate);
         UserVO uVO = service.UserSelect(mVO.getUserid());
         mav.addObject("uVO", uVO);
 
@@ -210,6 +243,8 @@ public class MinihomeController {
         int follow = service.FollowSelect(uVO.getUserid());//팔로우 수 불러오기
         int follower_count = follower.size();
         int today = service.CountToday(uVO.getUserid());
+
+        mav.addObject("follower",follower);
 
         mav.addObject("follow", follow);
         mav.addObject("follower_count", follower_count);

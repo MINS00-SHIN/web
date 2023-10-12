@@ -3,7 +3,8 @@
 
 <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/minihome-default.css">
 <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/memo_posting.css">
-<script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/super-build/ckeditor.js"></script>
+<script src="${pageContext.servletContext.contextPath}/js/ckeditor.js"></script>
 
 
 <style>
@@ -35,7 +36,7 @@
 
     /* 크기 및 위치 */
     .ck-editor__editable {
-        height: 300px;
+        height: 375px;
         margin: 0 auto;
     }
 
@@ -73,6 +74,12 @@
     /**************** ckEditor5 커스터마이징 끝 ****************/
 </style>
 <script>
+    $(document).on('click',"#today-attend", function(){
+        window.location.href = '${pageContext.servletContext.contextPath}/minihome/memo/write';
+    });
+    window.onload = function () {
+        CKEDITOR.ClassicEditor.create(document.getElementById("editor"), option);
+    }
     $(document).ready(function () {
         var now = new Date();
         var year = now.getFullYear();
@@ -176,11 +183,11 @@
                     <div class="checkbox-section" style="align-content: space-between; display: flex">
                         <p><input type="checkbox" id="myCheck" name="myCheck">인증게시판 연동</p>
                     </div>
-                    <div class="body-select" style="margin-top: 30px; margin-bottom: 30px">
+                    <div class="body-select" style="margin-top: 10px; margin-bottom: 10px">
                         <b>주요부위</b> &nbsp; &nbsp;
                         상체 : <input type="radio" name="first-part" value="upper"/>
                         하체 : <input type="radio" name="first-part" value="lower"/>
-                        <hr/>
+                        <hr style="margin-top: 10px"/>
                         가슴 : <input type="checkbox" name="body-part" value="chest">
                         어깨 : <input type="checkbox" name="body-part" value="shoulder">
                         등 : <input type="checkbox" name="body-part" value="back">
@@ -196,14 +203,6 @@
 
                     <!-- 게시글 작성 영역 -->
                     <textarea placeholder='게시글을 작성하세요.' id="editor" name="editor" class="post-text-area"></textarea>
-                    <script>
-                        ClassicEditor
-                            .create(document.querySelector('#editor'))
-                            .catch(error => {
-                                console.error(error);
-                            });
-                    </script>
-                    <!-- ck에디터 폼 끝 -->
 
                     <div id="bottom" style="display: flex">
                         <!-- 이모티콘 선택 영역-->

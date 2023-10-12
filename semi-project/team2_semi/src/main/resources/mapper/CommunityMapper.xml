@@ -13,7 +13,7 @@
         select no, subject, userid, hit, date_format(writedate,'%m-%d %h:%i')as writedate
         from community
         <if test="searchWord!=null">
-            where ${searchKey} like '%${searchWord}%'
+            where ${searchKey} like %#{searchWord}%
         </if>
         order by no desc
         limit ${onePageRecord}
@@ -22,7 +22,7 @@
     <select id="totalRecord">
         select count(no) from board
         <if test="searchWord!=null">
-            where ${searchKey} like '%${searchWord}%'
+            where ${searchKey} like #${searchWord}%
         </if>
     </select>
     <select id="communitySelect" resultType="com.team2.healthsns.vo.CommunityVO">

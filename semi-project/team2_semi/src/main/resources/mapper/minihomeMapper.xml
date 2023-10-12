@@ -1,26 +1,90 @@
-package com.team2.healthsns.mapper;
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-import com.team2.healthsns.vo.MemoVO;
-import com.team2.healthsns.vo.UserVO;
-import com.team2.healthsns.vo.GuestbookVO;
-import org.apache.ibatis.annotations.Mapper;
+<mapper namespace="com.team2.healthsns.mapper.MinihomeMapper">
 
-import java.util.List;
+    <select id="UserSelect" resultType="com.team2.healthsns.vo.UserVO">
+        select userid, username, date_format(date,'%Y년 %m월 %d일') as date, profile_img, comment
+        from user_info
+        where userid = #{param1}
+    </select>
 
-@Mapper
-public interface MinihomeMapper {
-    public UserVO UserSelect(String id);
-    public List<String> FollowerSelect(String id);
-    public int FollowSelect(String id);
-    public List<GuestbookVO> GuestbookSelect(String id);
-    public int GuestbookInsert(GuestbookVO gvo);
-    public int GuestbookDelete(int guestbookid);
-    public int FollowDelete(String id, String userid);
-    public int FollowInsert(String id, String userid);
-    public void VisitInsert(String id, String userid);
-    public int CountToday(String id);
-    public int MemoInsert(MemoVO mVO);
-    public MemoVO MemoSelect(int no);
-    public int CountMemo(String id);
-    public List<MemoVO> MemoListSelect(String id, int month, int year);
-}
+    <select id="FollowerSelect">
+        select follower_id
+        from follow
+        where userid=#{param1}
+    </select>
+
+    <select id="FollowSelect">
+        select count(userid)
+        from follow
+        where follower_id=#{param1}
+    </select>
+
+    <select id="GuestbookSelect" resultType="com.team2.healthsns.vo.GuestbookVO">
+        select userid, date_format(write_date,'%Y년 %m월 %d일') as write_date, content, guestbookID
+        from guest_book
+        where target_home=#{param1}
+        order by guestbookID desc
+    </select>
+
+    <insert id="GuestbookInsert">
+        insert into guest_book(target_home, userid, content)
+        values(#{target_home}, #{userid}, #{content})
+    </insert>
+
+    <update id="GuestbookDelete">
+        delete
+        from guest_book
+        where guestbookID = ${param1};
+    </update>
+
+    <!-- 파라미터1이 오너, 2가 로그인유저-->
+    <update id="FollowDelete">
+        delete
+        from follow
+        where userid = #{param1} and follower_id=#{param2}
+    </update>
+
+    <insert id="FollowInsert">
+        insert into follow(userid, follower_id)
+        values(#{param1}, #{param2})
+    </insert>
+
+    <insert id="VisitInsert">
+        insert into visit_count(owner_id, visitor_id)
+        values(#{param1}, #{param2})
+    </insert>
+
+    <select id="CountToday">
+        select count(visitor_id)
+        from visit_count
+        where owner_id=#{param1}
+    </select>
+
+    <insert id="MemoInsert">
+        insert into memo(userid, emoji, cat, content, bodypart, add_auth)
+        values(#{userid}, ${emoji}, #{cat}, #{content}, #{bodypart}, ${add_auth})<!-- true면 1, false면 0-->
+    </insert>
+
+    <select id="MemoSelect" resultType="com.team2.healthsns.vo.MemoVO">
+        select userid, emoji, write_date, cat, content, bodypart, add_auth
+        from memo
+        where memoid=${param1}
+    </select>
+
+    <select id="CountMemo">
+        select count(memoid)
+        from memo
+        where userid=#{param1}
+    </select>
+
+    <select id="MemoListSelect" resultType="com.team2.healthsns.vo.MemoVO">
+        select date_format(write_date,'%d') as write_date, memoid, emoji, cat
+        from memo
+        where userid=#{param1} and year(write_date)=#{param3} and month(write_date)=#{param2}
+        order by write_date
+    </select>
+</mapper>

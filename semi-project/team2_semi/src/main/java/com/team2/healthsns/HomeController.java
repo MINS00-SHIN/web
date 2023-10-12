@@ -27,7 +27,7 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(HttpSession session) {
 		//자동로그인용 나중에 지워야함
-		session.setAttribute("LogId", "helloworld");
+		session.setAttribute("LogId", "helloworld3");
 		session.setAttribute("LogStatus","Y");
 
 		return "home";

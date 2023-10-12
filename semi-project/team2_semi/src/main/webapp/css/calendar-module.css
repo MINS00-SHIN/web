@@ -173,3 +173,8 @@ li {
 .erase-button > a {
   color: red;
 }
+
+#today-attend:disabled {
+  background-color: #ddd; /* 버튼이 비활성화된 경우의 배경색 */
+  color: black;
+}

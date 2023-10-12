@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.team2.healthsns.mapper.CommunityMapper">
+
+    <insert id="communityInsert">
+        insert into community(subject, content, userid, ip)
+        values(#{subject}, #{content}, #{userid}, #{ip});
+    </insert>
+    <select id="communityPageList" resultType="com.team2.healthsns.vo.CommunityVO">
+        select no, subject, userid, hit, date_format(writedate,'%m-%d %h:%i')as writedate
+        from community
+        <if test="searchWord!=null">
+            where ${searchKey} like %#{searchWord}%
+        </if>
+        order by no desc
+        limit ${onePageRecord}
+        offset ${offsetPoint}
+    </select>
+    <select id="totalRecord">
+        select count(no) from board
+        <if test="searchWord!=null">
+            where ${searchKey} like #${searchWord}%
+        </if>
+    </select>
+    <select id="communitySelect" resultType="com.team2.healthsns.vo.CommunityVO">
+        select no, subject, userid, content, hit, date_format(writedate,'%m-%d %h:%i')as writedate
+        from board
+        where no=${param1}
+    </select>
+    <update id="hitCount">
+        update board
+        set hit = hit+1
+        where no=${param1}
+    </update>
+    <update id="communityUpdate">
+        update board
+        set subject=#{subject}, content=#{content}
+        where no=${no}
+    </update>
+    <update id="communityDelete">
+        delete
+        from board
+        where no=${param1}
+    </update>
+</mapper>
