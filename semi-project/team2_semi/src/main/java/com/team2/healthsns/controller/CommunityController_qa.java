@@ -24,13 +24,13 @@ public class CommunityController_qa {
         List<CommunityVO> list = service.CommunityPageListQa(pVO);
         mav.addObject("list", list);
         mav.addObject("pVO", pVO);
-        mav.setViewName("Community/CommunityListQa");
+        mav.setViewName("community/Community_Qa");
         return mav;
     }
 
     @GetMapping("/QaCommunity/write")
     public String CommunityWrite() {
-        return "/Community/CommunityWriteQa";
+        return "/community/Community_posting_Qa";
     }
 
     @PostMapping("/QaCommunity/writeOk")
@@ -41,7 +41,7 @@ public class CommunityController_qa {
         if (result > 0) {
             mav.setViewName("redirect:list");
         } else {
-            mav.setViewName("Community/CommunityResultQa");
+            mav.setViewName("community/Community_Qa");
             mav.addObject("msg", "등록");
         }
         return mav;
@@ -54,7 +54,7 @@ public class CommunityController_qa {
         CommunityVO vo = service.CommunitySelectQa(post_id);
         mav.addObject("vo", vo);
         mav.addObject("pVO", pVO);
-        mav.setViewName("/Community/CommunityViewQa");
+        mav.setViewName("/community/Community_Qa");
         return mav;
     }
 
@@ -62,7 +62,7 @@ public class CommunityController_qa {
     public ModelAndView CommunityEdit(int post_id) {
         ModelAndView mav = new ModelAndView();
         mav.addObject("vo", service.CommunitySelectQa(post_id));
-        mav.setViewName("Community/CommunityEditQa");
+        mav.setViewName("community/Community_Edit_Qa");
         return mav;
     }
 
@@ -73,7 +73,7 @@ public class CommunityController_qa {
         if (result > 0) {
             mav.setViewName("redirect:view?no=" + vo.getPost_id());
         } else {
-            mav.setViewName("Community/CommunityResultQa");
+            mav.setViewName("community/community_Qa");
             mav.addObject("msg", "수정");
         }
         return mav;
