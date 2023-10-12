@@ -24,13 +24,13 @@ public class CommunityController_auth {
         List<CommunityVO> list = service.CommunityPageListAuth(pVO);
         mav.addObject("list", list);
         mav.addObject("pVO", pVO);
-        mav.setViewName("Community/CommunityListAuth");
+        mav.setViewName("community/Community_Auth");
         return mav;
     }
 
     @GetMapping("/AuthCommunity/write")
     public String CommunityWrite() {
-        return "/Community/CommunityWriteAuth";
+        return "/community/Community_Posting_Auth";
     }
 
     @PostMapping("/AuthCommunity/writeOk")
@@ -41,7 +41,7 @@ public class CommunityController_auth {
         if (result > 0) {
             mav.setViewName("redirect:list");
         } else {
-            mav.setViewName("Community/CommunityResultAuth");
+            mav.setViewName("community/Community_Auth");
             mav.addObject("msg", "등록");
         }
         return mav;
@@ -54,7 +54,7 @@ public class CommunityController_auth {
         CommunityVO vo = service.CommunitySelectAuth(post_id);
         mav.addObject("vo", vo);
         mav.addObject("pVO", pVO);
-        mav.setViewName("/Community/CommunityViewAuth");
+        mav.setViewName("/community/Community_Auth");
         return mav;
     }
 
@@ -62,7 +62,7 @@ public class CommunityController_auth {
     public ModelAndView CommunityEdit(int post_id) {
         ModelAndView mav = new ModelAndView();
         mav.addObject("vo", service.CommunitySelectAuth(post_id));
-        mav.setViewName("Community/CommunityEditAuth");
+        mav.setViewName("community/Community_Edit_Auth");
         return mav;
     }
 
@@ -73,7 +73,7 @@ public class CommunityController_auth {
         if (result > 0) {
             mav.setViewName("redirect:view?no=" + vo.getPost_id());
         } else {
-            mav.setViewName("Community/CommunityResultAuth");
+            mav.setViewName("community/Community_Auth");
             mav.addObject("msg", "수정");
         }
         return mav;
