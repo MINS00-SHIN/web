@@ -2,6 +2,33 @@
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 
+<script>
+    function fetchData() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'YOUR_SERVER_ENDPOINT_URL', true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var data = JSON.parse(xhr.responseText);
+                // data 배열에 따라 HTML 업데이트
+                updateRanking(data);
+            }
+        };
+        xhr.send();
+    }
+
+    function updateRanking(data) {
+        var ranks = ["🥇", "🥈", "🥉"]; // 1,2,3등의 특수문자
+        var rankingList = document.querySelector(".follow-ranking ul");
+        for (var i = 0; i < data.followers.length; i++) {
+            var rank = ranks[i] || "#" + (i + 1) + " :"; // 4등 이상은 순서대로
+            rankingList.children[i+2].querySelector("a").textContent = rank + " " + data.followers[i].name;
+        }
+    }
+
+    // 페이지 로드 시 데이터 가져오기
+    window.onload = fetchData;
+</script>
+
         <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/community-ranking-and-postlist.css">
         <div class="left">
             <div class="left">
