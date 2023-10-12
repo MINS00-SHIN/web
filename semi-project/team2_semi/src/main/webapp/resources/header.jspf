@@ -36,9 +36,9 @@
     <div class="nav-02">
         <div class="category">
             <a href="index.html">홈</a><!-- 홈 -->
-            <a href="Community_Free.html">자유게시판</a><!-- 자유게시판 -->
-            <a href="Community_Auth.html">인증게시판</a><!-- 인증게시판 -->
-            <a href="Community_QNA.html">Q&A게시판</a><!-- Q&A게시판 -->
+            <a href="${pageContext.servletContext.contextPath}/community/Community_Free">자유게시판</a><!-- 자유게시판 -->
+            <a href="${pageContext.servletContext.contextPath}/community/Community_Auth">인증게시판</a><!-- 인증게시판 -->
+            <a href="${pageContext.servletContext.contextPath}/community/Community_QNA">Q&A게시판</a><!-- Q&A게시판 -->
             <a href="Community_Map.html">헬스장찾기</a><!-- 헬스장찾기 -->
         </div>
         <div class="main-search-box">
