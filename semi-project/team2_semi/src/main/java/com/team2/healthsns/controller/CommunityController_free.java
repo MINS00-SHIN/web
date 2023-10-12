@@ -24,13 +24,13 @@ public class CommunityController_free {
         List<CommunityVO> list = service.CommunityPageListFree(pVO);
         mav.addObject("list", list);
         mav.addObject("pVO", pVO);
-        mav.setViewName("Community/CommunityListFree");
+        mav.setViewName("community/Community_Free");
         return mav;
     }
 
     @GetMapping("/FreeCommunity/write")
     public String CommunityWrite() {
-        return "/Community/CommunityWriteFree";
+        return "/community/Community_posting_Free";
     }
 
     @PostMapping("/FreeCommunity/writeOk")
@@ -41,7 +41,7 @@ public class CommunityController_free {
         if (result > 0) {
             mav.setViewName("redirect:list");
         } else {
-            mav.setViewName("Community/CommunityResultFree");
+            mav.setViewName("community/Community_Free");
             mav.addObject("msg", "등록");
         }
         return mav;
@@ -54,7 +54,7 @@ public class CommunityController_free {
         CommunityVO vo = service.CommunitySelectFree(post_id);
         mav.addObject("vo", vo);
         mav.addObject("pVO", pVO);
-        mav.setViewName("/Community/CommunityViewFree");
+        mav.setViewName("/community/community_free");
         return mav;
     }
 
@@ -62,7 +62,7 @@ public class CommunityController_free {
     public ModelAndView CommunityEdit(int post_id) {
         ModelAndView mav = new ModelAndView();
         mav.addObject("vo", service.CommunitySelectFree(post_id));
-        mav.setViewName("Community/CommunityEditFree");
+        mav.setViewName("community/Community_Edit_Free");
         return mav;
     }
 
@@ -73,7 +73,7 @@ public class CommunityController_free {
         if (result > 0) {
             mav.setViewName("redirect:view?no=" + vo.getPost_id());
         } else {
-            mav.setViewName("Community/CommunityResultFree");
+            mav.setViewName("community/Community_Free");
             mav.addObject("msg", "수정");
         }
         return mav;
