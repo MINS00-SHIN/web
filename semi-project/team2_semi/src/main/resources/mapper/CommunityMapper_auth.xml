@@ -3,15 +3,15 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.team2.healthsns.mapper.CommunityMapper">
+<mapper namespace="com.team2.healthsns.mapper.CommunityMapper_auth">
 
     <insert id="communityInsertAuth">
-        insert into board(title, content, writer, board_cat)
-        values(#{title}, #{content}, #{writer}, 'auth');
+        insert into board(title, content, userid, board_cat)
+        values(#{title}, #{content}, #{userid}, 'auth');
     </insert>
 
     <select id="communityPageListAuth" resultType="com.team2.healthsns.vo.CommunityVO">
-        select post_id, title, writer, views, date_format(write_date,'%m-%d %h:%i') as writedate
+        select post_id, title, userid, views, date_format(write_date,'%m-%d %h:%i') as writedate
         from board
         where board_cat = 'auth'
         <if test="searchWord != null and searchWord != ''">
@@ -31,7 +31,7 @@
     </select>
 
     <select id="communitySelectAuth" resultType="com.team2.healthsns.vo.CommunityVO">
-        select post_id, title, writer, content, views, date_format(write_date,'%m-%d %h:%i') as writedate
+        select post_id, title, userid, content, views, date_format(write_date,'%m-%d %h:%i') as writedate
         from board
         where post_id = #{param1}
     </select>

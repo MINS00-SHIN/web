@@ -1,0 +1,35 @@
+.sort-area {
+  display: flex;
+}
+
+.post-sort {
+  justify-content: space-between;
+}
+.board-name-area {
+  margin-left: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+.show-result-all {
+  font-size: 16px;
+  margin-top: 15px;
+  color: white;
+  background-color: var(--blue-basic-color);
+}
+
+.show-result-all:hover {
+  background-color: #31386d;
+}
+
+.show-result-all:active {
+  background-color: var(--blue-basic-color);
+}
+.show-result-area {
+  width: 884px;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+}
+.margin-for-search-result {
+  margin: 50px;
+}

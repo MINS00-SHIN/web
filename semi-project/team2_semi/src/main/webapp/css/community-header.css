@@ -1,0 +1,24 @@
+.intro-board {
+  background-color: var(--blue-basic-color);
+  width: 1200px;
+  height: 300px;
+  margin: 0 auto;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.board-name,
+.board-introduce {
+  font-weight: bold;
+  font-size: 32px;
+  text-align: center;
+  color: white;
+}
+
+.board-introduce {
+  font-size: 18px;
+  margin-top: 20px;
+}

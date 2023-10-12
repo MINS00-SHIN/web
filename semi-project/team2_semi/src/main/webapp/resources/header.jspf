@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-	8">
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/default.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/community-nav.css">

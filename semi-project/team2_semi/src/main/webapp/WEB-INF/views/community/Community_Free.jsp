@@ -16,6 +16,25 @@
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
 
+        <style>
+     	   .page {
+    			text-align: center; /* 텍스트와 인라인 요소 중앙 정렬 */
+	    		display: flex; /* Flexbox 사용 */
+ 		   		justify-content: center; /* 수평 중앙 정렬 */
+ 		   		align-items: center; /* 수직 중앙 정렬 */
+			}
+
+			.page ul {
+  			    list-style-type: none; /* 목록 스타일 제거 */
+ 				padding: 0; /* 패딩 제거 */
+   				display: inline-flex; /* 인라인 Flexbox로 만들어 요소들을 한 줄로 배치 */
+			}
+
+			.page li {
+    			margin: 0 5px; /* 각 항목 주위에 약간의 마진 추가 */
+			}
+        
+        </style>
 
         <body>
             <!-- #region start -->
@@ -27,11 +46,11 @@
                 </div>
             </header>
             <!-- #endregion -->
-            <!-- #region start -->
+            <!-- #region start -->	
             <!-- 랭킹영역 -->
             <!-- #region start -->
             <div class="content">
-                <jsp:include page="../rank.jsp" />
+                <jsp:include page="/resources/rank.jsp" />
                 <!-- #endregion -->
                 <!-- 게시글 영역 -->
                 <div class="right">

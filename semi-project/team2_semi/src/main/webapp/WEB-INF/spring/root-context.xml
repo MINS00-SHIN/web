@@ -8,9 +8,9 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://127.0.0.1/team2"></property>
+		<property name="url" value="jdbc:mysql://127.0.0.1/mydb"></property>
 		<property name="username" value="root"></property>
-		<property name="password" value="tiger1234"></property>
+		<property name="password" value="cygnus16"></property>
 	</bean>
 	<!-- mybatis에서 사용할 xml파일 위치, 환경설정 정보 이용해 SqlSessionFactory객체 생성
             dataSource 의존주입.-->

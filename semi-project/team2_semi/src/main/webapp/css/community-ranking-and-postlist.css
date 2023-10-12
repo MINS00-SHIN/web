@@ -1,0 +1,244 @@
+.follow-ranking ul,
+li {
+  list-style-type: none;
+}
+
+.content {
+  margin: 0 auto;
+  margin-top: 30px;
+  width: 1200px;
+  display: flex;
+  /* background-color: lightgray; */ /* 영역 확인용, 나중에 지울 예정 */
+}
+
+.left {
+  width: 226px;
+  margin-top: 103px;
+  align-items: center;
+  align-content: center;
+  color: #31386d;
+  margin-left: 20px;
+}
+
+.left a {
+  font-size: 15px;
+  color: #31386d;
+  font-weight: bold;
+}
+/* 랭킹 사이에 높이차이 30px */
+
+.left ul {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.left li {
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.post-content {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ranking-head {
+  text-align: center !important;
+}
+
+.follow-ranking,
+.like-ranking {
+  background-color: #94a5db;
+  margin-top: 30px;
+  box-sizing: border-box;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.ranking-head {
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  color: #31386d;
+  padding-left: 0;
+}
+.right {
+  margin-left: 50px;
+  margin-top: 30px;
+}
+.second-category {
+  display: flex;
+}
+
+.second-category > .check-post {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--blue-basic-color);
+  margin-left: 30px;
+}
+select {
+  font-size: 18px;
+  height: 35px;
+  color: var(--blue-basic-color);
+  font-weight: bold;
+  text-align: center;
+}
+
+.post-list {
+  margin-top: 43px;
+  margin-right: 20px;
+  width: 884px;
+  border: 4px solid var(--blue-basic-color);
+  position: relative;
+}
+
+.post-list-head {
+  height: 50px;
+}
+.post-sort {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.post-sort-select {
+  margin-right: 20px;
+  margin-left: 10px;
+  font-size: 16px;
+  height: 25px;
+}
+
+.post-list hr {
+  margin-top: 15px;
+}
+
+.second-head {
+  display: flex;
+}
+
+.second-head img {
+  width: 25px;
+  height: 25px;
+}
+.second-title {
+  margin-left: 30px;
+}
+.second-comment {
+  margin-left: 450px;
+}
+
+.second-like,
+.second-view {
+  margin-left: 30px;
+}
+.second-post-date {
+  margin-left: 100px;
+}
+.inbox {
+  margin-top: 5px !important;
+}
+
+.second-line,
+.rate,
+.third-line,
+.post-end-line {
+  display: flex;
+}
+.posts-ul,
+.posts-li {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.first-line,
+.second-line,
+.third-line,
+.board {
+  margin-left: 20px;
+}
+.first-line {
+  font-weight: bold;
+}
+.post-content,
+.third-line {
+  font-size: 14px;
+  width: 515px;
+}
+.second-line,
+.third-line {
+  margin-top: 3px;
+}
+.comment-seper,
+.like-seper,
+.view-seper {
+  width: 60px;
+}
+
+.date {
+  width: 160px;
+  text-align: center;
+  padding-right: 10px;
+}
+
+.post-end-line {
+  width: 884px;
+  margin-top: 30px;
+  justify-content: center;
+}
+
+.inboard-search-area {
+  width: 100%;
+  margin-left: auto;
+  text-align: center;
+  position: relative;
+}
+
+.post-button {
+  position: absolute;
+  right: 30px;
+  width: 100px;
+  height: 35px;
+  color: white;
+  background-color: var(--blue-basic-color);
+  border: 0px;
+  border-radius: 5px;
+}
+.post-button:hover,
+.paging-button:hover {
+  background-color: #31386d;
+}
+.post-button:active,
+.paging-button:active {
+  background-color: var(--blue-basic-color);
+}
+.inboard-search {
+  width: 200px;
+  height: 35px;
+  border-radius: 0.5em;
+}
+
+.paging {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  margin-top: 30px;
+}
+
+.paging-button {
+  margin: 0 10px;
+  background-color: white;
+  color: var(--blue-basic-color);
+  border: 1px solid var(--blue-basic-color);
+  border-radius: 3px;
+  font-size: 1em;
+  width: 42px;
+  height: 32px;
+}
+
+.dummy-button {
+  background: var(--blue-basic-color);
+  color: white;
+}

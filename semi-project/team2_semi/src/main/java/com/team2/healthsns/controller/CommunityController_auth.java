@@ -71,7 +71,7 @@ public class CommunityController_auth {
         ModelAndView mav = new ModelAndView();
         int result = service.CommunityUpdateAuth(vo);
         if (result > 0) {
-            mav.setViewName("redirect:view?no=" + vo.getPost_id());
+            mav.setViewName("redirect:view?post_id=" + vo.getPost_id());
         } else {
             mav.setViewName("community/Community_Auth");
             mav.addObject("msg", "수정");
@@ -86,7 +86,7 @@ public class CommunityController_auth {
         if (result > 0) {
             mav.setViewName("redirect:list");
         } else {
-            mav.setViewName("redirect:view?no=" + post_id);
+            mav.setViewName("redirect:view?post_id=" + post_id);
         }
         return mav;
     }

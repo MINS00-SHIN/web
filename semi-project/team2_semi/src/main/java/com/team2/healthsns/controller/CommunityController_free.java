@@ -54,7 +54,7 @@ public class CommunityController_free {
         CommunityVO vo = service.CommunitySelectFree(post_id);
         mav.addObject("vo", vo);
         mav.addObject("pVO", pVO);
-        mav.setViewName("/community/community_free");
+        mav.setViewName("/community/Community_free");
         return mav;
     }
 
@@ -71,7 +71,7 @@ public class CommunityController_free {
         ModelAndView mav = new ModelAndView();
         int result = service.CommunityUpdateFree(vo);
         if (result > 0) {
-            mav.setViewName("redirect:view?no=" + vo.getPost_id());
+            mav.setViewName("redirect:view?post_id=" + vo.getPost_id());
         } else {
             mav.setViewName("community/Community_Free");
             mav.addObject("msg", "수정");
@@ -86,7 +86,7 @@ public class CommunityController_free {
         if (result > 0) {
             mav.setViewName("redirect:list");
         } else {
-            mav.setViewName("redirect:view?no=" + post_id);
+            mav.setViewName("redirect:view?post_id=" + post_id);
         }
         return mav;
     }
