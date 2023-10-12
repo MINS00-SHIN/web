@@ -18,7 +18,6 @@
 
 
         <body>
-            <jsp:include page="../header.jsp" />
             <!-- #region start -->
             <header>
                 <!-- 게시판 알려주는 박스 -->
@@ -160,5 +159,4 @@
             </div>
             <script src="${pageContext.servletContext.contextPath}/js/community-default.js"></script>
             <script src="${pageContext.servletContext.contextPath}/js/community-post-paging.js"></script>
-            <jsp:include page="../footer.jsp" />
         </body>

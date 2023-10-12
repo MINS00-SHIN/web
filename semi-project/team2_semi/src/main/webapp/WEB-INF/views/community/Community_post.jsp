@@ -149,7 +149,6 @@
         </script>
 
         <main>
-            <jsp:include page="header.jspf" />
             <!-- #게시물 선택 바 시작-->
             <div class="check-post">
                 <a href="">전체 게시물</a>&nbsp;&nbsp;&nbsp;
@@ -246,5 +245,4 @@
 
             <script src="${pageContext.servletContext.contextPath}/js/community-post.js"></script>
             <script src="${pageContext.servletContext.contextPath}/js/community-default.js"></script>
-            <jsp:include page="footer.jspf" />
         </main>

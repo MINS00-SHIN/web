@@ -15,7 +15,5 @@ public class CommunityVO {
     private int like;
     private int views;
     private String write_date;
-    private String board_cat;
-    private String ip;
-    
+    private String board_cat; 
 }
