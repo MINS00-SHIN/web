@@ -4,26 +4,31 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.team2.healthsns.mapper.CommunityReplyMapper">
-<insert id="replyInsert">
-    insert into replycommunity(no, comment, userid)
-    values(${no}, #{comment}, #{userid})
-</insert>
 
-    <select id="replySelect" resultType="com.team2.healthsns.vo.CommunityReplyVO">
-        select replyno, comment, userid, writedate
-        from replycommunity
-        where no = ${param1}
-        order by replyno desc
-    </select>
+    <insert id="replyInsert">
+        insert into comment(target_post_id, content, userid)
+        values(${target_post_id}, #{content}, #{userid});
+    </insert>
+
+<select id="replySelect" resultType="com.team2.healthsns.vo.CommunityReplyVO">
+    select comment_id, content, userid, write_date
+    from comment
+    where target_post_id = ${param1}
+    order by target_parent asc, depth asc, write_date asc;
+</select>
+
 
     <update id="replyUpdate">
-        update replycommunity
-        set comment=#{comment}
-        where replyno=${replyno}
+        update comment
+        set content=#{content}
+        where comment_id=${comment_id};
     </update>
-    <delete id="replyDelete">
-        delete
-        from replycommunity
-        where replyno=${param1}
-    </delete>
+
+<update id="replyDelete">
+    update comment
+    set content='삭제되었습니다.'
+    where comment_id=${param1};
+</update>
+
+
 </mapper>
