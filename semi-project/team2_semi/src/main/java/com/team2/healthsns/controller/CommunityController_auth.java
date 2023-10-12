@@ -17,7 +17,7 @@ public class CommunityController_auth {
     @Autowired
     CommunityService service;
 
-    @GetMapping("/authCommunity/list")
+    @GetMapping("/AuthCommunity/list")
     public ModelAndView CommunityListAuth(PagingVO pVO) {
         ModelAndView mav = new ModelAndView();
         pVO.setTotalRecord(service.totalRecordAuth(pVO));
@@ -28,12 +28,12 @@ public class CommunityController_auth {
         return mav;
     }
 
-    @GetMapping("/authCommunity/write")
+    @GetMapping("/AuthCommunity/write")
     public String CommunityWrite() {
         return "/Community/CommunityWriteAuth";
     }
 
-    @PostMapping("/authCommunity/writeOk")
+    @PostMapping("/AuthCommunity/writeOk")
     public ModelAndView CommunityWriteOk(CommunityVO vo, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
         vo.setUserid((String) request.getSession().getAttribute("logId"));
@@ -47,7 +47,7 @@ public class CommunityController_auth {
         return mav;
     }
 
-    @GetMapping("/authCommunity/view")
+    @GetMapping("/AuthCommunity/view")
     public ModelAndView CommunityView(int post_id, PagingVO pVO) {
         ModelAndView mav = new ModelAndView();
         service.hitCountAuth(post_id);
@@ -58,7 +58,7 @@ public class CommunityController_auth {
         return mav;
     }
 
-    @GetMapping("/authCommunity/edit")
+    @GetMapping("/AuthCommunity/edit")
     public ModelAndView CommunityEdit(int post_id) {
         ModelAndView mav = new ModelAndView();
         mav.addObject("vo", service.CommunitySelectAuth(post_id));
@@ -66,7 +66,7 @@ public class CommunityController_auth {
         return mav;
     }
 
-    @PostMapping("/authCommunity/editOk")
+    @PostMapping("/AuthCommunity/editOk")
     public ModelAndView CommunityEditOk(CommunityVO vo) {
         ModelAndView mav = new ModelAndView();
         int result = service.CommunityUpdateAuth(vo);
@@ -79,7 +79,7 @@ public class CommunityController_auth {
         return mav;
     }
 
-    @GetMapping("/authCommunity/delete")
+    @GetMapping("/AuthCommunity/delete")
     public ModelAndView CommunityDelete(int post_id) {
         ModelAndView mav = new ModelAndView();
         int result = service.CommunityDeleteAuth(post_id);
