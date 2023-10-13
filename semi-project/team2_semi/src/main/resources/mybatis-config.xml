@@ -6,6 +6,8 @@
 <configuration>
 	<mappers>
         <mapper resource="mapper/CommunityMapper_auth.xml"/>
+        <mapper resource="mapper/CommunityMapper_free.xml"/>
+        <mapper resource="mapper/CommunityMapper_qa.xml"/>
     </mappers>
     
 </configuration>

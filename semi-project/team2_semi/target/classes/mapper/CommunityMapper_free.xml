@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.team2.healthsns.mapper.CommunityMappe_free">
+<mapper namespace="com.team2.healthsns.mapper.CommunityMapper_free">
 
     <insert id="communityInsertFree">
         insert into board(title, content, userid, board_cat)
