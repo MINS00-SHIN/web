@@ -62,7 +62,7 @@
             </h2>
 
 
-            <form action="${pageContext.servletContext.contextPath}/submit-review" method="post">
+            <form method="post">
                 <label>별점:</label><br>
                 <div class="star-rating">
                     <input type="radio" id="5-stars" name="rating" value="5"/> <label
@@ -80,11 +80,11 @@
                 <input type="hidden" id="placeName" value="placeName"
                        name="placeName"/> <input type="hidden" id="x" value="x" name="x"/>
                 <input type="hidden" id="y" value="y" name="y"/> <br>
-                <textarea name='comment'
+                <textarea name='comment' id="comment"
                           style="width: 100%; height: 40px; border: 1px solid #CCCCCC; background-color: #FFFDD0;"
                           placeholder='리뷰를 남겨주세요'></textarea>
 
-                <br/> <input type='submit' value='등록'/>
+                <br/> <input type='button' id="writereview" value='등록'/>
 
 
             </form>
@@ -123,6 +123,40 @@
         inputx.value = x.toString();
         inputy.value = y.toString();
         getreview(y.toString(), x.toString(), placeName);
+
+        $(document).on('click','#writereview',function(){
+           var placeName = $("#placeName").val();
+           var comment = $("#comment").val();
+           var x = $("#x").val();
+           var y = $("#y").val();
+           var rating = $('input[name="rating"]:checked').val();
+           if(comment && rating){
+               //여기에 ajax
+               $.ajax({
+                  url: "${pageContext.servletContext.contextPath}/submit-review",
+                   type:'post',
+                   data: {
+                      placeName:placeName,
+                       comment:comment,
+                       x:x,
+                       y:y,
+                       rating:rating
+                   },
+                   success:function(result){
+                      if(result>0){
+                          getreview(y,x,placeName);
+                          $("#comment").val('');
+                          $('input[name="rating"]').prop('checked',false);
+                      }
+                   },
+                   error:function(error){
+                      console.log(error);
+                   }
+               });
+           }else{
+               alert("별점과 리뷰를 모두 입력해주세요");
+           }
+        });
     }
 
     function getreview(y, x, placeName) {
@@ -162,7 +196,5 @@
 </script>
 
 
-<script
-        src="${pageContext.servletContext.contextPath}/js/community-default.js"></script>
 <script
         src="${pageContext.servletContext.contextPath}/js/community-map.js"></script>

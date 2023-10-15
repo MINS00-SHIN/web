@@ -82,4 +82,13 @@
         from user_info
         where email=#{param1}
     </select>
+
+    <update id="updateUser">
+        update user_info
+        set userid=#{param1}, username=#{param2}, email=#{param3}, pwd_q=#{param4}, userpwd=#{param6}, pwd_a=#{param5}
+        <if test="#{param7}!=null and #{param7}!=''">
+            ,comment=#{param7}
+        </if>
+        where userid=#{param8}
+    </update>
 </mapper>

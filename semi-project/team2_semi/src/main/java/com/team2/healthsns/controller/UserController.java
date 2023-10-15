@@ -41,7 +41,7 @@ public class UserController {
         //유저정보 다 가져와야함
         UserVO uservo = service.UserSelectAll(userid);
         mav.addObject("uservo", uservo);
-        mav.setViewName("/user/myPage");
+        mav.setViewName("/user/userInfoChange");
         return mav;
     }
 
@@ -199,5 +199,40 @@ public class UserController {
         return service.getTopPostsByDate(date);
     }
 
-
+    @PostMapping("/user/editprofile")
+    public ModelAndView EditProfile(String userid, String userpwd, String userpwd2,
+                           String username, String email,
+                           String pwd_q, String pwd_a, String comment,
+                           HttpSession session){
+        ModelAndView mav = new ModelAndView();
+        String LogId = (String) session.getAttribute("LogId");
+        System.out.println("LogId = "+LogId);
+        System.out.println("userpwd = "+userpwd);
+        String selectid = service.loginSelect(LogId, userpwd);
+        System.out.println(selectid==null);
+        if (selectid != null){//기존비번이랑 세션 같으면
+            String userid_e = userid;
+            String username_e = username;
+            String email_e = email;
+            String pwd_q_e = pwd_q;
+            String pwd_a_e = pwd_a;
+            String userpwd_e = userpwd;
+            String comment_e = comment;
+            if (!(userpwd2 == null || userpwd2.trim().isEmpty())) {
+                System.out.println("여기 들어옴?...");
+                userpwd_e=userpwd2;
+            }
+            int result = service.updateUser(userid_e, username_e, email_e, pwd_q_e, pwd_a_e, userpwd_e, comment_e, LogId);
+            if(result==1){
+                session.invalidate();
+                mav.setViewName("/user/login");
+            }else{
+                mav.setViewName("/minihome/wrong");
+            }
+        }else{
+            System.out.println("실패");
+            mav.setViewName("/minihome/wrong");
+        }
+        return mav;
+    }
 }

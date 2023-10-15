@@ -75,4 +75,9 @@ public class UserServicempl implements UserService {
         return mapper.emailCheck(email);
     }
 
+    @Override
+    public int updateUser(String userid_e, String username_e, String email_e, String pwd_q_e, String pwd_a_e, String userpwd_e, String comment_e, String LogId) {
+        return mapper.updateUser(userid_e, username_e, email_e, pwd_q_e, pwd_a_e, userpwd_e, comment_e, LogId);
+    }
+
 }

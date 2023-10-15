@@ -29,11 +29,14 @@ public class MapController {
 	}
 
 	@PostMapping("/submit-review")
-	public ModelAndView submitReview(@RequestParam("placeName") String placeName,
-			@RequestParam("comment") String comment, @RequestParam("x") String x, @RequestParam("y") String y,
-			HttpSession session, @RequestParam("rating") int rating) {
+	@ResponseBody
+	public int submitReview(String placeName,
+			String comment, String x, String y,
+			HttpSession session, int rating) {
+		if(session.getAttribute("LogStatus")==null || session.getAttribute("LogStatus")!="Y"){
+			return 0;
+		}
 		ReviewVO reviewvo = new ReviewVO();
-		ModelAndView mav = new ModelAndView();
 		reviewvo.setName(placeName);
 		reviewvo.setReview(comment);
 		reviewvo.setLatitude(String.valueOf(y));
@@ -49,9 +52,7 @@ public class MapController {
 			e.printStackTrace();
 		}
 
-		mav.setViewName("redirect:/map");
-		return mav;
-
+		return result;
 	}
 	
 	@PostMapping("/getreview")

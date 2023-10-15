@@ -33,4 +33,5 @@ public interface UserMapper {
     public int changePwd(String pwd, String userid);
 
     public int emailCheck(String email);
+    public int updateUser(String userid_e, String username_e, String email_e, String pwd_q_e, String pwd_a_e, String userpwd_e, String comment_e, String LogId);
 }
