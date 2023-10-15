@@ -26,9 +26,8 @@
 	<div class="input-area">
 		<h1>로그인</h1>
 		<form action="${pageContext.servletContext.contextPath}/user/loginOk" method="post" class="input-area" onsubmit="return loginCheck()">
-			<input type="text" name="userid" id="userid" class="userid"
-				placeholder="아이디"> <input type="password" name="userpwd"
-				id="userpwd" class="userpwd" placeholder="비밀번호">
+			<input type="text" name="userid" id="userid" class="userid" placeholder="아이디">
+			<input type="password" name="userpwd" id="userpwd" class="userpwd" placeholder="비밀번호">
 			<div class="sign-in-up">
 				<a href="${pageContext.servletContext.contextPath}/userForm">회원가입</a> <a href="${pageContext.servletContext.contextPath}/user/userFind">아이디/비밀번호
 					찾기</a>

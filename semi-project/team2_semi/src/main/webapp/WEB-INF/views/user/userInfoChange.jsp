@@ -30,7 +30,7 @@
 
                 <div class="pwd2-input">
                     <label for="userpwd2">새로운 비밀번호</label>
-                    <input type="password" name="userpwd" id="userpwd" class="inputtext"
+                    <input type="password" name="userpwd" id="userpwd2" class="inputtext"
                         placeholder="8~16글자 대문자, 소문자, 숫자, 특수문자 중 2가지 이상 사용">
                 </div>
         
@@ -41,7 +41,7 @@
         
         <div class="email-input">
 			<label label for="useremail"> 이메일 </label>
-            <input type="text" name="email" id="email" class="inputtext" placeholder=""> 
+            <input type="text" name="email" id="useremail" class="inputtext" placeholder="">
             <input type="button" value="확인" class="email-check" id="email-check">
         </div>
         <div class="Question">

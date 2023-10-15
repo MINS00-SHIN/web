@@ -36,8 +36,8 @@
         LIMIT 9;
     </select>
 
-    <select id="idCheck" resultType="int">
-        select count(userid) from user
+    <select id="idCheck">
+        select count(userid) from user_info
         where userid=#{param1}
     </select>
 
@@ -52,10 +52,9 @@
 
     <!-- 로그인 -->
     <select id="loginSelect">
-        select userid, username
+        select userid
         from USER_INFO
-        where userid=#{param1}
-        and userpwd=#{param2}
+        where userid=#{param1} and userpwd=#{param2}
     </select>
 
     <!-- 아아디 찾기 -->
@@ -77,4 +76,10 @@
         set userpwd = #{param1}
         where userid = #{param2}
     </update>
+
+    <select id="emailCheck">
+        select count(userid)
+        from user_info
+        where email=#{param1}
+    </select>
 </mapper>

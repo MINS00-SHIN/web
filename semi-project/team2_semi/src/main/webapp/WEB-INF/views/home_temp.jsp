@@ -6,14 +6,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="shortcut icon" href="${pageContext.servletContext.contextPath}/img/top2.jpg" type="image/png">
-
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-
-
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/swiper-bundle.min.css">
-
     <link rel="stylesheet" href="${pageContext.servletContext.contextPath}/css/styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 

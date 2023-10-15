@@ -79,9 +79,16 @@
         b.bodypart AS bodypart,
         b.board_cat AS board_cat,
         b.cat as cat,
+        b.like as `like`,
         (SELECT COUNT(*) FROM comment c WHERE c.target_post_id = b.post_id) AS commentsCount
         FROM board b
         WHERE post_id = #{param1}
     </select>
+
+    <update id="increaseLike">
+        update board
+        set `like` = `like` +1
+        where post_id=#{param1}
+    </update>
 
 </mapper>

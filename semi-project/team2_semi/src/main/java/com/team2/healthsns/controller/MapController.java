@@ -48,12 +48,8 @@ public class MapController {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-		if(result > 0) {
-			System.out.println("db�� ��");
-		}else {
-			System.out.println("�ȵ�");
-		}
+
+		mav.setViewName("redirect:/map");
 		return mav;
 
 	}

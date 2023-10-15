@@ -64,10 +64,8 @@
                 <option value="1" ${pagingVO.category=='1' ? 'selected' : '' }>상체</option>
                 <option value="2" ${pagingVO.category=='2' ? 'selected' : '' }>하체</option>
             </select>
-            <div class="check-post"><a
-                    href="${pageContext.servletContext.contextPath}/QaCommunity/list">전체 게시물</a></div>
-            <div class="check-post"><a
-                    href="${pageContext.servletContext.contextPath}/Community_Show_MyPost.html">내 게시물</a>
+            <div class="check-post"></div>
+            <div class="check-post">
             </div>
         </div>
         <!-- 게시글 목록 -->
@@ -102,7 +100,7 @@
             <c:forEach var="bVO" items="${list}">
                 <li class="posts-li">
                     <a
-                            href="${pageContext.servletContext.contextPath}/community_post?post_id=${bVO.post_id}">
+                            href="${pageContext.servletContext.contextPath}/board/view?post_id=${bVO.post_id}">
                         <div class="first-line">${bVO.title}</div>
                         <div class="second-line">
                             <div class="post-content">${bVO.bodypart}</div>

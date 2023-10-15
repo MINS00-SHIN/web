@@ -53,10 +53,10 @@
             <c:if test="${LogStatus=='Y'}">
                 <a href="${pageContext.servletContext.contextPath}/minihome?id=${LogId}">
                     <img src="" class="user-icon" id="user-icon" style="border-radius: 50%;"/></a>
-                <a href="${pageContext.servletContext.contextPath}/logout?referer=${pageContext.request.requestURI}" class="login-button">로그아웃</a><!-- 이거 # 로그인으로 바꿔야함 -->
+                <a href="${pageContext.servletContext.contextPath}/user/logout" class="login-button">로그아웃</a><!-- 이거 # 로그인으로 바꿔야함 -->
             </c:if>
-            <c:if test="${LogStatus=='' || LogStatus=='N'}">
-                <a href="Sign_In.html" class="login-button">로그인</a><!-- 이거 # 로그인으로 바꿔야함 -->
+            <c:if test="${LogStatus!='Y'}">
+                <a href="${pageContext.servletContext.contextPath}/user/login" class="login-button">로그인</a><!-- 이거 # 로그인으로 바꿔야함 -->
             </c:if>
         </div>
     </div>

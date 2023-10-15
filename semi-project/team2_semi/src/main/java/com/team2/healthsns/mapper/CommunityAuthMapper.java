@@ -17,4 +17,6 @@ public interface CommunityAuthMapper {
     public int communityUpdateAuth(CommunityVO vo);
     //게시글 삭제
     public int communityDeleteAuth(int post_id);
+
+    public void increaseLike(int post_id);
 }

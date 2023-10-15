@@ -174,7 +174,6 @@
                     <div class="today">Today :&nbsp<p class="today-count">${today}</div>
                 </div>
                 <div class="check-mine-post">
-                    <a href="Community_Show_MyPost.html">내 글 보기</a>
                 </div>
                 <div class="reg-date">가입일자 :&nbsp<p>${uVO.date}</p>
                 </div>

@@ -45,6 +45,15 @@ public class UserController {
         return mav;
     }
 
+    @GetMapping("/user/logout")
+    public ModelAndView Logout(HttpSession session){
+        session.invalidate();
+        ModelAndView mav = new ModelAndView();
+        System.out.println("로그아웃찍먹하다옴");
+        mav.setViewName("redirect:/home");
+        return mav;
+    }
+
 
     //
     @GetMapping("/userForm")
@@ -54,19 +63,30 @@ public class UserController {
         return mav;
     }
 
-    @GetMapping("/user/idCheck")
-    public ModelAndView idCheck(String userid) {
-        System.out.println("userid->" + userid);
+    @PostMapping("/user/idCheck")
+    @ResponseBody
+    public int idCheck(String inputid){
+        int result = 1;
+        try{
+            result = service.idCheck(inputid);
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            return result;
+        }
+    }
 
-        // DB조회
-        int result = service.idCheck(userid);
-
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("result", result);
-        mav.addObject("userid", userid);
-        mav.setViewName("user/idCheck");
-
-        return mav;
+    @PostMapping("/user/idEmail")
+    @ResponseBody
+    public int emailCheck(String inputemail){
+        int result = 1;
+        try{
+            result = service.emailCheck(inputemail);
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            return result;
+        }
     }
 
     @PostMapping("/userFormOK")
@@ -74,6 +94,7 @@ public class UserController {
         ModelAndView mav = new ModelAndView();
         System.out.println(vo.getUserid()); // 임시
 
+        System.out.println(vo.toString());
         if ("none".equals(vo.getPwd_q()) || vo.getPwd_q() == null) {
             mav.setViewName("redirect:signUpFail");
             return mav;
@@ -83,7 +104,7 @@ public class UserController {
             int result = service.userInsert(vo);
 
             if (result > 0) {
-                mav.setViewName("redirect:/");
+                mav.setViewName("redirect:/home");
             } else {
                 mav.setViewName("user/signUpFail");
             }
@@ -106,18 +127,16 @@ public class UserController {
                                 HttpSession session) {
 
         ModelAndView mav = new ModelAndView();
-
-        UserVO logVo = service.loginSelect(userid, userpwd);
-        System.out.println(logVo.getUserid());
-        if (logVo != null) {
-
-            session.setAttribute("logId", logVo.getUserid());
-            session.setAttribute("logName", logVo.getUsername());
-            session.setAttribute("logStatus", "Y");
-
+        String selectid = service.loginSelect(userid, userpwd);
+        if (selectid!=null) {
+            System.out.println(selectid);
+            session.setAttribute("LogId", selectid);
+            session.setAttribute("LogStatus", "Y");
             mav.setViewName("redirect:/home");
+            System.out.println("여기들림");
         } else {// 로그인 실패 -> 로그인 폼으로 이동
-            mav.setViewName("redirect:login");
+            System.out.println("실패 들림");
+            mav.setViewName("redirect:/user/login");
         }
         return mav;
     }
