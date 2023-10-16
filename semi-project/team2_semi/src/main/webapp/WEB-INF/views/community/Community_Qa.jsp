@@ -235,11 +235,21 @@
         let postSort = $("#post-sort-select").val();
         let searchWord = $("#inboard-search").val();
 
-        currentParams.set('category', category);
-        currentParams.set('postSort', postSort);
-        currentParams.set('searchWord', encodeURIComponent(searchWord));
+        if(category){
+            currentParams.set('category', category);
+        }else{
+            currentParams.set('category', "0");
+        }
+        if(postSort){
+            currentParams.set('postSort', postSort);
+        }else{
+            currentParams.set('postSort', "1");
+        }
+        /*if(searchWord){
+            currentParams.set('searchWord', encodeURIComponent(searchWord));
+        }*/
 
-        let url = "${pageContext.servletContext.contextPath}/QaCommunity/list";
+        let url = "${pageContext.servletContext.contextPath}/AuthCommunity/list";
         url += "?" + currentParams.toString();
 
         return url;

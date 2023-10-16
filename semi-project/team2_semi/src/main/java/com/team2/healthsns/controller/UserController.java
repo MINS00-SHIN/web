@@ -185,7 +185,6 @@ public class UserController {
     @ResponseBody
     public List<UserVO> GetFollowRank() {
         List<UserVO> ranklist = service.GetFollowRanking();
-        System.out.println(ranklist.get(0).getUsername());
         return ranklist;
 
 
