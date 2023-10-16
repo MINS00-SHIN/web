@@ -47,6 +47,12 @@
         <if test="searchWord != null and searchWord != ''">
             AND title like CONCAT('%', #{searchWord}, '%')
         </if>
+        <if test="category == 1">
+            AND cat = 'upper'
+        </if>
+        <if test="category == 2">
+            AND cat = 'lower'
+        </if>
     </select>
 
     <select id="communitySelectFree" resultType="com.team2.healthsns.vo.CommunityVO">
