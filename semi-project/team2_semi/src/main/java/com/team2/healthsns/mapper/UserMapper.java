@@ -20,7 +20,7 @@ public interface UserMapper {
     public int userInsert(UserVO vo); // UserVO 오브젝트 데이터를
 
     //3. 로그인
-    public UserVO loginSelect(String userid, String userpwd);
+    public String loginSelect(String userid, String userpwd);
 
     //4. 아이디 찾기
     public String findId(String email);
@@ -31,4 +31,7 @@ public interface UserMapper {
 
     //6. 비밀번호 변경
     public int changePwd(String pwd, String userid);
+
+    public int emailCheck(String email);
+    public int updateUser(String userid_e, String username_e, String email_e, String pwd_q_e, String pwd_a_e, String userpwd_e, String comment_e, String LogId);
 }

@@ -56,6 +56,25 @@
                window.location.href="${pageContext.servletContext.contextPath}/board/delete?post_id="+postid;
            }
         });
+
+        $(document).on('click','#increse-like',function(){
+            var postid=${vo.post_id};
+            $.ajax({
+                url : "${pageContext.servletContext.contextPath}/board/like",
+                type:'post',
+                data:{
+                    post_id:postid
+                },
+                success:function(result){
+                    //result에 갱신한 like수가 올거임.
+                    var newHtml = '<img src="${pageContext.servletContext.contextPath}/img/thumbs-up.png" alt="" class="icon">&nbsp;&nbsp;좋아요 ' + result;
+                    $('#increse-like').html(newHtml);
+                },
+                error:function(error){
+                    console.log(error.responseText);
+            }
+            });
+        });
     });
 </script>
 <style>
@@ -152,8 +171,13 @@
             ${vo.content}
         </div>
         <div class="content-post-tail" id="comment-anchor">
-            <a href="#"><img src="${pageContext.servletContext.contextPath}/img/thumbs-up.png" alt="" class="icon">&nbsp;&nbsp;좋아요 ${vo.like}</a>
-            <a href="#"><img src="${pageContext.servletContext.contextPath}/img/share-icon.jpg" alt="" class="icon">&nbsp;&nbsp;공유</a>
+            <c:if test="${LogStatus == 'Y'}">
+                <a style="cursor: pointer" id="increse-like"><img src="${pageContext.servletContext.contextPath}/img/thumbs-up.png" alt="" class="icon">&nbsp;&nbsp;좋아요 ${vo.like}</a>
+            </c:if>
+            <c:if test="${LogStatus != 'Y'}">
+                <a><img src="${pageContext.servletContext.contextPath}/img/thumbs-up.png" alt="" class="icon">&nbsp;&nbsp;좋아요 ${vo.like}</a>
+            </c:if>
+            <a id="share" style="cursor: pointer"><img src="${pageContext.servletContext.contextPath}/img/share-icon.jpg" alt="" class="icon">&nbsp;&nbsp;공유</a>
             <c:if test="${vo.bodypart!=null}">
                 <span style="margin-left: 10px; color: rgb(70,77,134)">${vo.bodypart}</span>
             </c:if>

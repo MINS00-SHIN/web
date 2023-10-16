@@ -42,6 +42,7 @@ public class CommunityQaController {
 
             // Add the generated URI for search and sort to the model
             model.addAttribute("uri", getUri(pVO));
+            model.addAttribute("pVO", pVO);
 
         } catch (Exception e) {
             // Optionally: Log the exception or handle it accordingly
@@ -64,7 +65,7 @@ public class CommunityQaController {
     @GetMapping("/QaCommunity/write")
     public String CommunityWrite(HttpSession session) {
         String logstatus = (String) session.getAttribute("LogStatus");
-        if (!logstatus.equals("Y")) {
+        if (logstatus==null||!logstatus.equals("Y")) {
             return "/minihome/wrong";
         }
         return "/community/Community_Posting_Qa";

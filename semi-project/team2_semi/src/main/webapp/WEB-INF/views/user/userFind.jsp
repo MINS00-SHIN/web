@@ -153,7 +153,7 @@
                         });
                     }
                 }, error: function (error) {
-
+					alert("오류발생");
                 }
             });
 

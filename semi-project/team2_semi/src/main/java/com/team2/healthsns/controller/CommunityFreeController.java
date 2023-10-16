@@ -38,6 +38,7 @@ public class CommunityFreeController {
 
             // Add the generated URI for search and sort to the model
             model.addAttribute("uri", getUri(pVO));
+            model.addAttribute("pVO",pVO);
 
         } catch (Exception e) {
             // Optionally: Log the exception or handle it accordingly

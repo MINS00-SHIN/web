@@ -43,6 +43,7 @@ public class CommunityAuthController {
 
             // Add the generated URI for search and sort to the model
             model.addAttribute("uri", getUri(pVO));
+            model.addAttribute("pVO", pVO);
 
         } catch (Exception e) {
             // Optionally: Log the exception or handle it accordingly
@@ -205,5 +206,13 @@ public class CommunityAuthController {
             mav.setViewName("redirect:/QaCommunity/List");
         }
         return mav;
+    }
+
+    @PostMapping("/board/like")
+    @ResponseBody
+    public int increaseLike(int post_id){
+        service.increaseLike(post_id);
+        CommunityVO vo = service.CommunitySelectAuth(post_id);
+        return vo.getLike();
     }
 }

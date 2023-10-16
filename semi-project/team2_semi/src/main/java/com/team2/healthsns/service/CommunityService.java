@@ -30,4 +30,5 @@ public interface CommunityService {
     public void hitCountQa(int post_id);
     public int CommunityUpdateQa(CommunityVO vo);
     public int CommunityDeleteQa(int post_id);
+    public void increaseLike(int post_id);
 }

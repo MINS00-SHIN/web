@@ -29,7 +29,6 @@
         엉덩이 : <input type="checkbox" name="body-part" value="hip">
         종아리 : <input type="checkbox" name="body-part" value="calf">
     </div>
-    <input type="text" name="subject" placeholder="제목"/>
     <textarea id="ckEditor" name="content"></textarea>
     <div class="write">
         <button id="writeButton" type="button">작성</button>

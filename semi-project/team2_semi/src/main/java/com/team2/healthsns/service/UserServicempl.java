@@ -40,7 +40,7 @@ public class UserServicempl implements UserService {
 
     // 로그인
     @Override
-    public UserVO loginSelect(String userid, String userpwd) {
+    public String loginSelect(String userid, String userpwd) {
         return mapper.loginSelect(userid, userpwd);
     }
 
@@ -68,6 +68,16 @@ public class UserServicempl implements UserService {
     public int changePwd(String pwd, String userid) {
         // TODO Auto-generated method stub
         return mapper.changePwd(pwd, userid);
+    }
+
+    @Override
+    public int emailCheck(String email) {
+        return mapper.emailCheck(email);
+    }
+
+    @Override
+    public int updateUser(String userid_e, String username_e, String email_e, String pwd_q_e, String pwd_a_e, String userpwd_e, String comment_e, String LogId) {
+        return mapper.updateUser(userid_e, username_e, email_e, pwd_q_e, pwd_a_e, userpwd_e, comment_e, LogId);
     }
 
 }

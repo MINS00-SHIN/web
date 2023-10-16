@@ -41,7 +41,16 @@ public class UserController {
         //유저정보 다 가져와야함
         UserVO uservo = service.UserSelectAll(userid);
         mav.addObject("uservo", uservo);
-        mav.setViewName("/user/myPage");
+        mav.setViewName("/user/userInfoChange");
+        return mav;
+    }
+
+    @GetMapping("/user/logout")
+    public ModelAndView Logout(HttpSession session){
+        session.invalidate();
+        ModelAndView mav = new ModelAndView();
+        System.out.println("로그아웃찍먹하다옴");
+        mav.setViewName("redirect:/home");
         return mav;
     }
 
@@ -54,19 +63,30 @@ public class UserController {
         return mav;
     }
 
-    @GetMapping("/user/idCheck")
-    public ModelAndView idCheck(String userid) {
-        System.out.println("userid->" + userid);
+    @PostMapping("/user/idCheck")
+    @ResponseBody
+    public int idCheck(String inputid){
+        int result = 1;
+        try{
+            result = service.idCheck(inputid);
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            return result;
+        }
+    }
 
-        // DB조회
-        int result = service.idCheck(userid);
-
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("result", result);
-        mav.addObject("userid", userid);
-        mav.setViewName("user/idCheck");
-
-        return mav;
+    @PostMapping("/user/idEmail")
+    @ResponseBody
+    public int emailCheck(String inputemail){
+        int result = 1;
+        try{
+            result = service.emailCheck(inputemail);
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            return result;
+        }
     }
 
     @PostMapping("/userFormOK")
@@ -74,6 +94,7 @@ public class UserController {
         ModelAndView mav = new ModelAndView();
         System.out.println(vo.getUserid()); // 임시
 
+        System.out.println(vo.toString());
         if ("none".equals(vo.getPwd_q()) || vo.getPwd_q() == null) {
             mav.setViewName("redirect:signUpFail");
             return mav;
@@ -83,7 +104,7 @@ public class UserController {
             int result = service.userInsert(vo);
 
             if (result > 0) {
-                mav.setViewName("redirect:/");
+                mav.setViewName("redirect:/home");
             } else {
                 mav.setViewName("user/signUpFail");
             }
@@ -106,18 +127,16 @@ public class UserController {
                                 HttpSession session) {
 
         ModelAndView mav = new ModelAndView();
-
-        UserVO logVo = service.loginSelect(userid, userpwd);
-        System.out.println(logVo.getUserid());
-        if (logVo != null) {
-
-            session.setAttribute("logId", logVo.getUserid());
-            session.setAttribute("logName", logVo.getUsername());
-            session.setAttribute("logStatus", "Y");
-
+        String selectid = service.loginSelect(userid, userpwd);
+        if (selectid!=null) {
+            System.out.println(selectid);
+            session.setAttribute("LogId", selectid);
+            session.setAttribute("LogStatus", "Y");
             mav.setViewName("redirect:/home");
+            System.out.println("여기들림");
         } else {// 로그인 실패 -> 로그인 폼으로 이동
-            mav.setViewName("redirect:login");
+            System.out.println("실패 들림");
+            mav.setViewName("redirect:/user/login");
         }
         return mav;
     }
@@ -180,5 +199,40 @@ public class UserController {
         return service.getTopPostsByDate(date);
     }
 
-
+    @PostMapping("/user/editprofile")
+    public ModelAndView EditProfile(String userid, String userpwd, String userpwd2,
+                           String username, String email,
+                           String pwd_q, String pwd_a, String comment,
+                           HttpSession session){
+        ModelAndView mav = new ModelAndView();
+        String LogId = (String) session.getAttribute("LogId");
+        System.out.println("LogId = "+LogId);
+        System.out.println("userpwd = "+userpwd);
+        String selectid = service.loginSelect(LogId, userpwd);
+        System.out.println(selectid==null);
+        if (selectid != null){//기존비번이랑 세션 같으면
+            String userid_e = userid;
+            String username_e = username;
+            String email_e = email;
+            String pwd_q_e = pwd_q;
+            String pwd_a_e = pwd_a;
+            String userpwd_e = userpwd;
+            String comment_e = comment;
+            if (!(userpwd2 == null || userpwd2.trim().isEmpty())) {
+                System.out.println("여기 들어옴?...");
+                userpwd_e=userpwd2;
+            }
+            int result = service.updateUser(userid_e, username_e, email_e, pwd_q_e, pwd_a_e, userpwd_e, comment_e, LogId);
+            if(result==1){
+                session.invalidate();
+                mav.setViewName("/user/login");
+            }else{
+                mav.setViewName("/minihome/wrong");
+            }
+        }else{
+            System.out.println("실패");
+            mav.setViewName("/minihome/wrong");
+        }
+        return mav;
+    }
 }

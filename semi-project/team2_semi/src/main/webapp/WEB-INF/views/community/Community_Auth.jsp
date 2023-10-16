@@ -64,10 +64,8 @@
                 <option value="1" ${pagingVO.category=='1' ? 'selected' : '' }>상체</option>
                 <option value="2" ${pagingVO.category=='2' ? 'selected' : '' }>하체</option>
             </select>
-            <div class="check-post"><a
-                    href="${pageContext.servletContext.contextPath}/AuthCommunity/list">전체 게시물</a></div>
-            <div class="check-post"><a
-                    href="${pageContext.servletContext.contextPath}/Community_Show_MyPost.html">내 게시물</a>
+            <div class="check-post"></div>
+            <div class="check-post">
             </div>
         </div>
         <!-- 게시글 목록 -->
@@ -102,10 +100,10 @@
             <c:forEach var="bVO" items="${list}">
                 <li class="posts-li">
                     <a
-                            href="${pageContext.servletContext.contextPath}/community_post?post_id=${bVO.post_id}">
+                            href="${pageContext.servletContext.contextPath}/board/view?post_id=${bVO.post_id}">
                         <div class="first-line">${bVO.title}</div>
                         <div class="second-line">
-                            <div class="post-content">${bVO.bodypart}</div>
+                            <div class="post-content" data-bodypart="${bVO.bodypart}"></div>
                             <div class="rate">
                                 <div class="comment-seper">${bVO.commentsCount}</div>
                                 <div class="like-seper">${bVO.like}</div>
@@ -210,9 +208,52 @@
         </div>
     </div>
 </div>
-<script src="${pageContext.servletContext.contextPath}/js/community-default.js"></script>
 </body>
 
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.post-content').each(function() {
+            var originalString = $(this).data('bodypart');
+            var parts = originalString.split('/');
+
+            for (var i = 0; i < parts.length; i++) {
+                switch(parts[i]) {
+                    case "chest":
+                        parts[i] = "#가슴";
+                        break;
+                    case "shoulder":
+                        parts[i] = "#어깨";
+                        break;
+                    case "back":
+                        parts[i] = "#등";
+                        break;
+                    case "arm":
+                        parts[i] = "#팔";
+                        break;
+                    case "stomach":
+                        parts[i] = "#복부";
+                        break;
+                    case "waist":
+                        parts[i] ="#허리";
+                        break;
+                    case "thigh":
+                        parts[i] ="#허벅지";
+                        break;
+                    case  "hip":
+                        parts[i]= "#엉덩이";
+                        break;
+                    case  "calf":
+                        parts[i] = "#종아리";
+                        break;
+                }
+            }
+
+            var newString = parts.join(' ');
+
+            $(this).text(newString);
+        });
+    });
+</script>
 <script>
     function searchCheck() {
         let searchWord = $("#inboard-search").val();

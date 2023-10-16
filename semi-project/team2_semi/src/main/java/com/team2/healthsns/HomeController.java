@@ -35,14 +35,7 @@ public class HomeController {
 		return "home";
 	}
 
-	@GetMapping("/logout")
-	public ModelAndView Logout(HttpSession session){
-		session.invalidate();
-		ModelAndView mav = new ModelAndView();
-		System.out.println("로그아웃찍먹하다옴");
-		mav.setViewName("redirect:/home");
-		return mav;
-	}
+
 	@GetMapping("/home")
 	public String realhome(){
 		return "home_temp";

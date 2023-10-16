@@ -51,6 +51,11 @@ public class CommunityServicempl implements CommunityService{
         return authMapper.communityDeleteAuth(post_id);
     }
 
+    @Override
+    public void increaseLike(int post_id){
+        authMapper.increaseLike(post_id);
+    }
+
 
     @Inject
     CommunityQaMapper qaMapper;
@@ -89,6 +94,7 @@ public class CommunityServicempl implements CommunityService{
     public int CommunityDeleteQa(int post_id) {
         return qaMapper.communityDeleteQa(post_id);
     }
+
 
     @Inject
     CommunityFreeMapper freeMapper;
