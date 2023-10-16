@@ -10,12 +10,17 @@
 <script>
     $(function () {
         $("#id-check").click(function () {
+            var idformat = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,16}$/;
             var inputid = $("#userid").val()
             var that = $(this);
             console.log(inputid);
             if (inputid == "") {
                 alert("아이디를 입력 후 중복검사하세요.");
                 return;
+            }
+            if(!idformat.test(String(inputid).toLowerCase())){
+                alert("아이디 형식이 올바르지 않습니다.");
+                return
             }
             $.ajax({
                url:"${pageContext.servletContext.contextPath}/user/idCheck",
@@ -40,11 +45,16 @@
         });
 
         $("#email-check").click(function () {
-            var inputemail = $("#email").val()
+            var inputemail = $("#email").val();
+            var emailFormat = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
             var that = $(this);
             console.log(inputemail);
             if (inputemail == "") {
                 alert("이메일을 입력 후 중복검사하세요.");
+                return;
+            }
+            if(!emailFormat.test(String(inputemail).toLowerCase())){
+                alert("이메일 형식이 올바르지 않습니다");
                 return;
             }
             $.ajax({
