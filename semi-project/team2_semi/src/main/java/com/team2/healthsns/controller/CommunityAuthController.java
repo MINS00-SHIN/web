@@ -49,7 +49,6 @@ public class CommunityAuthController {
             // Optionally: Log the exception or handle it accordingly
             e.printStackTrace();
         }
-        System.out.println("PostSort value: " + pVO.getPostSort());
         return "community/Community_Auth";
     }
 
@@ -203,7 +202,7 @@ public class CommunityAuthController {
         }else if(board_cat.equals("free")){
             mav.setViewName("redirect:/FreeCommunity/list");
         }else{
-            mav.setViewName("redirect:/QaCommunity/List");
+            mav.setViewName("redirect:/QaCommunity/list");
         }
         return mav;
     }
