@@ -11,9 +11,7 @@
       href="${pageContext.servletContext.contextPath}/css/community-ranking-and-postlist.css">
 <link rel="stylesheet"
       href="${pageContext.servletContext.contextPath}/css/community-map.css">
-<script type="text/javascript"
-        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=43f789e75b8922b41ac6921c8e130658&libraries=services"></script>
-
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=23bee51da0d0811f6f8880e96e9de62c&libraries=services"></script>
 
 <header>
     <!-- 게시판 알려주는 박스 -->
