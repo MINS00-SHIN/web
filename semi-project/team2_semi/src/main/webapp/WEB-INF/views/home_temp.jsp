@@ -20,7 +20,7 @@
 <body>
 <header class="header" id="header">
     <nav class="nav container">
-        <a href="index.html" class="nav__logo">헬스엔에스</a>
+        <a href="${pageContext.servletContext.contextPath}/home" class="nav__logo">헬스엔에스</a>
 
         <div class="nav__menu" id="nav-menu">
             <ul class="nav__list">
@@ -223,13 +223,13 @@
                 <p class="miniHome_search_bar__description">헬스인의 닉네임, 아이디를 검색하여 미니 홈으로 방문해보세요!
                 </p>
 
-                <form action="MiniHome_Home.html" class="miniHome_search_bar__form">
-                    <input type="text" placeholder="닉네임 및 아이디를 입력해주세요" class="miniHome_search_bar__input"/>
-
+                <form action="http://localhost:8080/healthsns/minihome" method="GET" class="miniHome_search_bar__form">
+                    <input type="text" name="id" placeholder="닉네임 및 아이디를 입력해주세요" class="miniHome_search_bar__input"/>
+                
                     <button class="button">
                         검색
                     </button>
-                </form>
+                </form>                
             </div>
         </div>
     </section>

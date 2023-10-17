@@ -94,7 +94,7 @@
             <div class="id-input">
                 <label for="userid">아이디</label>
                 <input type="text" name="userid" id="userid" placeholder="8~16글자의 대소문자, 숫자만 지원합니다." class="inputtext">
-                <input type="button" value="확인" class="id-check" id="id-check">
+                <input type="button" value="확인" class="id-check" id="id-check" style=" width: 50px; height: 30px;">
             </div>
 
             <div class="pwd-input">
@@ -111,7 +111,7 @@
             <div class="email-input">
                 <label label for="email"> 이메일 </label>
                 <input type="text" name="email" id="email" class="inputtext" placeholder="">
-                <input type="button" value="확인" class="email-check" id="email-check"/>
+                <input type="button" value="확인" class="email-check" id="email-check" style="width: 50px; height: 30px;"/>
             </div>
             <div class="Question">
                 <select name="pwd_q" id="pwd_q" class="pwd_q">

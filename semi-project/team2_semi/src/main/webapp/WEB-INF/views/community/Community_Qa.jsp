@@ -103,7 +103,7 @@
                             href="${pageContext.servletContext.contextPath}/board/view?post_id=${bVO.post_id}">
                         <div class="first-line">${bVO.title}</div>
                         <div class="second-line">
-                            <div class="post-content">${bVO.bodypart}</div>
+                            <div class="post-content" data-bodypart="${bVO.bodypart}"></div>
                             <div class="rate">
                                 <div class="comment-seper">${bVO.commentsCount}</div>
                                 <div class="like-seper">${bVO.like}</div>
@@ -113,7 +113,7 @@
                         </div>
                         <div class="third-line">
                             <div class="writer">${bVO.userid}</div>
-                            <div class="board">인증게시판</div>
+                            <div class="board">Q&A게시판</div>
                         </div>
                     </a>
                     <hr class="inbox">
@@ -210,7 +210,51 @@
 </div>
 <script src="${pageContext.servletContext.contextPath}/js/community-default.js"></script>
 </body>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.post-content').each(function() {
+            var originalString = $(this).data('bodypart');
+            console.log(originalString)
+            var parts = originalString.split('/');
 
+            for (var i = 0; i < parts.length; i++) {
+                switch(parts[i]) {
+                    case "chest":
+                        parts[i] = "#가슴";
+                        break;
+                    case "shoulder":
+                        parts[i] = "#어깨";
+                        break;
+                    case "back":
+                        parts[i] = "#등";
+                        break;
+                    case "arm":
+                        parts[i] = "#팔";
+                        break;
+                    case "stomach":
+                        parts[i] = "#복부";
+                        break;
+                    case "waist":
+                        parts[i] ="#허리";
+                        break;
+                    case "thigh":
+                        parts[i] ="#허벅지";
+                        break;
+                    case  "hip":
+                        parts[i]= "#엉덩이";
+                        break;
+                    case  "calf":
+                        parts[i] = "#종아리";
+                        break;
+                }
+            }
+
+            var newString = parts.join(' ');
+
+            $(this).text(newString);
+        });
+    });
+</script>
 <script>
     function searchCheck() {
         let searchWord = $("#inboard-search").val();
@@ -272,4 +316,4 @@
     });
 
 </script>
-        
+       
